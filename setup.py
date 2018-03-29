@@ -12,6 +12,7 @@ setup(name='saltlxc',
       include_package_data=True,
       install_requires=[
           'Click',
+          'requests',
       ],
       entry_points = {
           'console_scripts': ['saltlxc=saltlxc.scripts:cli'],

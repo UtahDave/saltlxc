@@ -42,6 +42,7 @@ def stop(vm):
     saltlxc.stop_container(vm)
     click.echo('% has been stopped' % vm)
 
+
 @cli.command()
 def stop_all():
     '''
@@ -51,3 +52,23 @@ def stop_all():
     click.echo('The following VMs have been stopped')
     for vm in vms:
         click.echo(vm)
+
+
+@cli.command()
+def update():
+    '''
+    Update the bootstrap script.
+    '''
+    ret = saltlxc.update_bootstrap()
+    click.echo(ret)
+    click.echo('Bootstrap script updated')
+
+
+@cli.command()
+@click.argument('vm')
+def deploy_bootstrap(vm):
+    '''
+    Copy bootstrap script to container
+    '''
+    ret = saltlxc.deploy_bootstrap(vm)
+    click.echo(ret)
