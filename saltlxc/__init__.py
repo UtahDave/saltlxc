@@ -43,8 +43,9 @@ def stop_all():
     Stop all running containers
     '''
     vms = list_containers()
-    for vm in vms:
-        subprocess.getoutput("lxc stop {0} --force".format(vm))
+    with click.progressbar(vms) as bar:
+        for vm in bar:
+            subprocess.getoutput("lxc stop {0} --force".format(vm))
     return(vms)
 
 
